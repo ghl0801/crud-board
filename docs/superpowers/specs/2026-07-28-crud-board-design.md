@@ -34,7 +34,7 @@ flowchart TD
         B2["api/posts/[id].js<br/>GET(상세), PUT(수정), DELETE(삭제)"]
     end
 
-    B --> C["lib/db.js<br/>(pg Pool 싱글턴)"]
+    B --> C["api/_db.js<br/>(pg Pool 싱글턴)"]
     C --> D[("Postgres (Vercel Marketplace/Neon)<br/>posts 테이블")]
     D --> C --> B -->|"JSON 응답"| A
 ```
@@ -135,7 +135,7 @@ js/
   post.js                    # post.html 전용 스크립트
   edit.js                    # edit.html 전용 스크립트
 api/
-  db.js                      # pg Pool 싱글턴 (모든 함수가 공유)
+  _db.js                     # pg Pool 싱글턴 (모든 함수가 공유)
   posts.js                   # GET(목록), POST(생성)
   posts/
     [id].js                  # GET(상세), PUT(수정), DELETE(삭제)

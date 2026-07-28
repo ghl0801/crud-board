@@ -1,4 +1,4 @@
-const { getPool } = require('./db');
+const { getPool } = require('./_db');
 
 module.exports = async function handler(request, response) {
   const pool = getPool();
@@ -13,7 +13,7 @@ module.exports = async function handler(request, response) {
   }
 
   if (request.method === 'POST') {
-    const { title, content, author } = request.body;
+    const { title, content, author } = request.body || {};
 
     if (!title || !content) {
       return response.status(400).json({ error: 'title과 content는 필수입니다.' });
