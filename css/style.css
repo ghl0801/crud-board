@@ -1,30 +1,195 @@
+:root {
+  --color-brand: oklch(0.624 0.176 254);
+  --color-brand-pressed: oklch(0.522 0.176 257);
+  --color-brand-weak: oklch(0.965 0.020 250);
+  --color-grey-900: oklch(0.234 0.030 254);
+  --color-grey-700: oklch(0.452 0.028 253);
+  --color-grey-400: oklch(0.752 0.016 251);
+  --color-grey-200: oklch(0.913 0.008 247);
+  --color-grey-100: oklch(0.957 0.005 247);
+  --color-grey-50: oklch(0.978 0.003 247);
+  --color-white: oklch(1 0 0);
+  --color-danger: oklch(0.628 0.218 22);
+
+  --font-sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,
+    "Apple SD Gothic Neo", "Noto Sans KR", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+
+  --radius-m: 12px;
+  --radius-l: 14px;
+  --radius-xl: 16px;
+  --radius-full: 999px;
+
+  --shadow-card: 0 4px 12px oklch(0.155 0.06 261 / 0.06), 0 1px 2px oklch(0.155 0.06 261 / 0.04);
+
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --dur-base: 200ms;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 body {
-  font-family: sans-serif;
+  font-family: var(--font-sans);
+  color: var(--color-grey-900);
+  background: var(--color-grey-50);
   max-width: 600px;
-  margin: 40px auto;
-  padding: 0 16px;
+  margin: 0 auto;
+  padding: var(--space-6) var(--space-4);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0 0 var(--space-4);
 }
 
 form {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--space-2);
+  background: var(--color-white);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-card);
+}
+
+input,
+textarea {
+  font-family: inherit;
+  font-size: 15px;
+  color: var(--color-grey-900);
+  background: var(--color-grey-100);
+  border: 1px solid var(--color-grey-200);
+  border-radius: var(--radius-m);
+  padding: var(--space-3) var(--space-4);
+  outline: none;
+  transition: border-color var(--dur-base) var(--ease), background var(--dur-base) var(--ease);
+}
+
+input:focus,
+textarea:focus {
+  background: var(--color-white);
+  border: 1.5px solid var(--color-brand);
 }
 
 textarea {
   min-height: 120px;
+  resize: vertical;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+button[type="submit"] {
+  height: 48px;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--color-white);
+  background: var(--color-brand);
+  border: none;
+  border-radius: var(--radius-l);
+  margin-top: var(--space-2);
+  transition: background var(--dur-base) var(--ease);
+}
+
+button[type="submit"]:active {
+  background: var(--color-brand-pressed);
+}
+
+.btn-primary {
+  display: inline-block;
+  height: 40px;
+  line-height: 40px;
+  padding: 0 var(--space-4);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-white);
+  background: var(--color-brand);
+  border-radius: var(--radius-m);
+  text-decoration: none;
+  margin-bottom: var(--space-4);
+}
+
+.btn-primary:active {
+  background: var(--color-brand-pressed);
 }
 
 #error {
-  color: red;
+  color: var(--color-danger);
+  font-size: 14px;
 }
 
-ul#post-list {
+#post-list {
   list-style: none;
   padding: 0;
+  margin: 0;
+  background: var(--color-white);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
 }
 
-ul#post-list li {
-  padding: 8px 0;
-  border-bottom: 1px solid #ddd;
+#post-list li {
+  padding: var(--space-4);
+  border-bottom: 1px solid var(--color-grey-200);
+  font-size: 15px;
+}
+
+#post-list li:last-child {
+  border-bottom: none;
+}
+
+#post-list a {
+  color: var(--color-grey-900);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+#post-view {
+  background: var(--color-white);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-card);
+}
+
+#post-view h1 {
+  font-size: 20px;
+}
+
+#post-view #author {
+  color: var(--color-grey-700);
+  font-size: 13px;
+  margin-top: calc(var(--space-2) * -1);
+}
+
+#post-view #content {
+  font-size: 15px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+#edit-link {
+  color: var(--color-brand);
+  font-weight: 600;
+  text-decoration: none;
+  margin-right: var(--space-4);
+}
+
+#delete-btn {
+  background: none;
+  border: none;
+  color: var(--color-danger);
+  font-size: 15px;
+  font-weight: 600;
+  padding: 0;
 }
